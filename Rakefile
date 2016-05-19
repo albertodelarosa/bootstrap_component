@@ -9,4 +9,12 @@ end
 
 RSpec::Core::RakeTask.new(:spec)
 
+task :console do
+  require 'irb'
+  require 'irb/completion'
+  require 'bootstrap_component'
+  ARGV.clear
+  IRB.start
+end
+
 task :default => :spec
