@@ -6,7 +6,8 @@ module BootstrapComponent
   # Your code goes here... I know huh... hehehe
 
   class B_Well
-    HTML_CHAR_ENTITIES = {'&lt;' => '<', "&gt;" => '>', "&quot;" => '"'}
+    include ViewHelpers
+    include Utils
 
     def initialize(parent = self, opts={}, &block)
       @html = ""
@@ -22,7 +23,7 @@ module BootstrapComponent
           check_block(&block)
         end
       end
-      return process_html
+      return process_html(@html)
     end
 
     def header(&block)
@@ -59,41 +60,6 @@ module BootstrapComponent
       return process_content("button", opts ) do
         check_block(&block)
       end
-    end
-
-    private
-
-
-    def process_content(content = "div", opts = "", &block)
-      return content_tag(content, opts){ check_block(&block) }
-    end
-
-    def process_class_attribute(opts, class_type)
-      unless ( class_type.nil? ) || ( class_type.empty? )
-        if opts.has_key?(:class)
-          opts[:class] = class_type + " " + opts[:class].to_s
-        else
-          opts[:class] = class_type
-        end
-      end
-      return opts
-    end
-
-    def check_block(&block)
-      if block.nil?
-        return ""
-      else
-        return block.call(self)
-      end
-    end
-
-    def process_html
-      check_html
-      @html.html_safe
-    end
-
-    def check_html
-      HTML_CHAR_ENTITIES.each{|key, value| @html.gsub!(key, value)}
     end
 
   end
