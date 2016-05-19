@@ -2,7 +2,8 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bootstrap_component`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
+Generates Twitter's Bootstrap components in the recommended formats,
+with some available modification
 
 ## Installation
 
@@ -22,7 +23,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+WELLS:
+  = well({class: "well-primary", id: "34oiwe"}) do |w|
+    - w.header do
+      = plan.name
+    - w.img({class: "img-responsive", src: plan.image_url, alt: ""})
+    - w.p do
+      = number_to_currency(plan.price)
+    - w.p.buttoon({class: "btn-default btn-block"}) do
+      = "add to cart"
+
+  *** OR ***
+
+  = well({class: "well-primary", id: "34oiwe"}) do |w|
+    - w.img({class: "img-responsive", src: plan.image_url, alt: ""})
+    - w.p do
+      = number_to_currency(plan.price)
+    - w.buttoon({class: "btn-default btn-block"}) do
+      = "add to cart"
+
+  - methods:
+    - header: takes only a block parameter
+    - img: takes opts parameters and block parameters (if needed)
+    - div, p, button: take opts, content, and block parameters ( in that
+      order, all are optional )
+
+
 
 ## Development
 
