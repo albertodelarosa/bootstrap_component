@@ -23,30 +23,70 @@ Or install it yourself as:
 
 ## Usage
 
-WELLS:
-  = well({class: "well-primary", id: "34oiwe"}) do |w|
-    - w.header do
-      = plan.name
-    - w.img({class: "img-responsive", src: plan.image_url, alt: ""})
-    - w.p do
-      = number_to_currency(plan.price)
-    - w.p.buttoon({class: "btn-default btn-block"}) do
+################################ WELLS ################################
+
+```haml
+
+= well({class: "well-primary", id: "34oiwe"}) do |w|
+  - w.header do
+    = name
+  - w.img({class: "img-responsive", src: image_url, alt: ""})
+  - w.p do
+    = number_to_currency(price)
+  - w.p.buttoon({class: "btn-default btn-block"}) do
+    = "add to cart"
+
+produces:
+
+<div class="well well-primary" id="34oiwe">
+  <div class="caption">
+    <div class="h4">
+      =name
+    </div>
+  </div>
+  <img class="img img-responsive" src="#{image_url}" alt ="">
+  </img>
+  <p>
+    = number_to_currency(price)
+  </p>
+  <p>
+    <button class="btn btn-default btn-block">
       = "add to cart"
+    </button>
+  </p>
+</div>
+
 
   *** OR ***
 
-  = well({class: "well-primary", id: "34oiwe"}) do |w|
-    - w.img({class: "img-responsive", src: plan.image_url, alt: ""})
-    - w.p do
-      = number_to_currency(plan.price)
-    - w.buttoon({class: "btn-default btn-block"}) do
-      = "add to cart"
+= well({class: "well-primary", id: "34oiwe"}) do |w|
+  - w.img({class: "img-responsive", src: image_url, alt: ""})
+  - w.p do
+    = number_to_currency(price)
+  - w.buttoon({class: "btn-default btn-block"}) do
+    = "add to cart"
 
-  - methods:
-    - header: takes only a block parameter
-    - img: takes opts parameters and block parameters (if needed)
-    - div, p, button: take opts, content, and block parameters ( in that
-      order, all are optional )
+produces:
+
+<div class="well well-primary" id="34oiwe">
+  <img class="img img-responsive" src="#{image_url}" alt ="">
+  </img>
+  <p>
+    = number_to_currency(price)
+  </p>
+  <p>
+    <button class="btn btn-default btn-block">
+      = "add to cart"
+    </button>
+  </p>
+</div>
+
+
+- methods:
+  - header: takes only a block parameter
+  - img: takes opts parameters and block parameters (if needed)
+  - div, p, button: take opts, content, and block parameters ( in that
+    order, all are optional )
 
 
 
